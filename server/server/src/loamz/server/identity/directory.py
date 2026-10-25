@@ -78,6 +78,17 @@ class Directory:
         return response
 
     # ------------------------------------------------------------------ users
+    def search_people(self, tenant: str, query: str = "", *, limit: int = 100) -> list[dict]:
+        """Search inside the organization endpoint, never the realm-wide user directory."""
+        return self.call(
+            "GET",
+            f"/organizations/{tenant}/members",
+            params={"search": query, "first": 0, "max": limit},
+        ).json()
+
+    def invite(self, tenant: str, email: str) -> None:
+        self.call("POST", f"/organizations/{tenant}/members/invite-user", data={"email": email})
+
     def members(
         self, tenant: str, *, first: int, count: int, username: str | None = None
     ) -> list[dict]:
