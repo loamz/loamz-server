@@ -33,7 +33,7 @@ COPY server/server server/server
 RUN --mount=type=cache,target=/root/.cache/uv \
     uv sync --frozen --no-dev --no-editable --package loamz-server --extra agents
 
-FROM python:3.14-slim-bookworm AS runtime
+FROM python:3.15-slim-bookworm AS runtime
 RUN apt-get update && apt-get install -y --no-install-recommends libprotobuf32 libnl-route-3-200 \
     && rm -rf /var/lib/apt/lists/* \
     && useradd --system --uid 10001 --create-home app \
