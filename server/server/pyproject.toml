@@ -44,7 +44,7 @@ loamz-server = "loamz.server.cli:main"
 
 [dependency-groups]
 dev = [
-    "pytest>=9",
+    "pytest>=9.2.0",
     "pytest-asyncio>=1.4",
     "pytest-xdist>=3.6",
     "pytest-timeout>=2.3",
